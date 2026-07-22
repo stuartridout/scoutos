@@ -271,11 +271,11 @@ the header, semantic colours from §5.3, and the §9 trust footer.
 
 - *Favicon* (SVG, OS mark only): 512×512, rounded square (rx ≈ 96–114), OS
   mark centred at ~82% width (~420/512), fully outlined.
-- *App icon* (PNG, mark + name): 512×512 rounded square; OS mark ~62% width
-  (~320/512) centred, top edge at ~15%; product name beneath in Cal Sans,
-  sized to fit within ~80% width (start ~104px and shrink to fit), baseline
-  ~89%. Maskable/full-bleed variants scale the whole composition to the
-  central ~80%; apple-touch to ~85% on an opaque square.
+- *App icon* (PNG, mark + name): 512×512 rounded square; OS mark ~80% width
+  (~410/512) centred, top edge at ~11%; product name beneath in Cal Sans,
+  sized to fit within ~80% width (start ~112px and shrink to fit), text
+  bottom at ~91%. Maskable/full-bleed variants scale the whole composition
+  to the central ~80%; apple-touch to ~85% on an opaque square.
 
 Reference implementations: HikeCheck `public/icon.svg` (favicon) +
 `public/icon-{192,512}.png`, `icon-maskable.png`, `apple-icon.png`; EventOK
