@@ -249,15 +249,16 @@ the header, semantic colours from §5.3, and the §9 trust footer.
    HikeCheck moves from `#2E7D46`/`#B26A00`/`#BC3C2B` (and tints) to the family
    values; its icon+label discipline is unchanged and now mandatory for its
    surface class (§6.4).
-4. **App icons & favicons: the OS mark.** Every ScoutOS app icon shows the
-   compass + light "S" ("OS") centred on a rounded square. The product name is
-   never baked into the artwork — the platform label beneath the icon (and the
-   page title beside the favicon) carries it. Per-product background/glyph
+4. **App icons: the OS mark with the product name beneath. Favicons: the OS
+   mark alone.** Full-size app icons (home screen, PWA install, apple-touch)
+   show the compass + light "S" ("OS") in the upper portion with the product
+   name beneath, set in **Cal Sans**, all in the product colourway. Favicons
+   hold only the OS mark — never the name. Per-product background/glyph
    colours are permitted (HikeCheck yellow-on-ink `#F2C41D`/`#1B241E`; Events
-   white-on-navy `#FBF8F0`/`#26336D`). Icon artwork is always **fully
-   outlined** — never live text: font-dependent SVG favicons fail to load
-   their fonts in browser tabs, which is how HikeCheck's favicon degraded to
-   a bare compass.
+   white-on-navy `#FBF8F0`/`#26336D`). Icon text and marks are always
+   rendered to pixels (PNG) or fully outlined paths — never live text:
+   font-dependent SVG favicons fail to load their fonts in browser tabs,
+   which is how HikeCheck's favicon degraded to a bare compass.
 5. **Lockups ship as outlined vectors** (§4.2), monochrome by default with the
    two-tone treatment on dark (§4.3). *Migration:* HikeCheck's live-text
    `Logo.tsx` is replaced with an outlined lockup (keeping its two-tone dark
@@ -266,11 +267,20 @@ the header, semantic colours from §5.3, and the §9 trust footer.
    future scoutos.org home. Product specs describe product-level choices and
    defer to this document for constants.
 
-**Icon composition template** (for new products): 512×512, rounded square
-(rx ≈ 96–114), OS mark centred at ~82% width (~420/512); maskable and
-full-bleed variants keep the mark within the central ~75–80% (~380/512).
-Reference implementations: `public/icon.svg` + `public/icon-maskable.svg` in
-HikeCheck; `app/icon.svg` + the PNG set in EventOK.
+**Icon composition templates** (for new products):
+
+- *Favicon* (SVG, OS mark only): 512×512, rounded square (rx ≈ 96–114), OS
+  mark centred at ~82% width (~420/512), fully outlined.
+- *App icon* (PNG, mark + name): 512×512 rounded square; OS mark ~62% width
+  (~320/512) centred, top edge at ~15%; product name beneath in Cal Sans,
+  sized to fit within ~80% width (start ~104px and shrink to fit), baseline
+  ~89%. Maskable/full-bleed variants scale the whole composition to the
+  central ~80%; apple-touch to ~85% on an opaque square.
+
+Reference implementations: HikeCheck `public/icon.svg` (favicon) +
+`public/icon-{192,512}.png`, `icon-maskable.png`, `apple-icon.png`; EventOK
+`app/icon.svg` + `app/favicon.ico` (favicons) + `public/icon-{192,512}.png`,
+`app/apple-icon.png`.
 
 ---
 
