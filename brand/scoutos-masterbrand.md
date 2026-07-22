@@ -239,16 +239,15 @@ the header, semantic colours from §5.3, and the §9 trust footer.
 
 **Agreed July 2026** (encoded above):
 
-1. **UI face: Nunito Sans family-wide.** HikeCheck already complies. *Migration:*
-   EventOK moves from Geist to Nunito Sans; until then Geist is a documented
-   deviation.
+1. **UI face: Nunito Sans family-wide.** HikeCheck already complied;
+   EventOK migrated from Geist in July 2026 (the unused Cal Sans web-font
+   load was removed at the same time — lockups are outlined).
 2. **Accent strategy: one-hex-in palette-out, per product** (§5.2). Waymark
    yellow is reclassified as HikeCheck's product accent; `#F2C41D` remains the
    ScoutOS *identity* colour (§5.1).
-3. **Semantic status hexes: the Events values, family-wide** (§5.3). *Migration:*
-   HikeCheck moves from `#2E7D46`/`#B26A00`/`#BC3C2B` (and tints) to the family
-   values; its icon+label discipline is unchanged and now mandatory for its
-   surface class (§6.4).
+3. **Semantic status hexes: the Events values, family-wide** (§5.3).
+   HikeCheck migrated from its old values in July 2026; its icon+label
+   discipline is unchanged and mandatory for its surface class (§6.4).
 4. **App icons: the OS mark with the product name beneath. Favicons: the OS
    mark alone.** Full-size app icons (home screen, PWA install, apple-touch)
    show the compass + light "S" ("OS") in the upper portion with the product
@@ -260,9 +259,9 @@ the header, semantic colours from §5.3, and the §9 trust footer.
    font-dependent SVG favicons fail to load their fonts in browser tabs,
    which is how HikeCheck's favicon degraded to a bare compass.
 5. **Lockups ship as outlined vectors** (§4.2), monochrome by default with the
-   two-tone treatment on dark (§4.3). *Migration:* HikeCheck's live-text
-   `Logo.tsx` is replaced with an outlined lockup (keeping its two-tone dark
-   colouring).
+   two-tone treatment on dark (§4.3). HikeCheck's live-text `Logo.tsx` was
+   replaced with an outlined lockup in July 2026 (keeping its two-tone dark
+   colouring); both products are now fully outlined.
 6. **This document is canonical** and lives in `stuartridout/scoutos`, the
    future scoutos.org home. Product specs describe product-level choices and
    defer to this document for constants.
