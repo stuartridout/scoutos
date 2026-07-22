@@ -176,7 +176,7 @@ Events' lifecycle / needs-action / day-and-safety families).
 
 | Role | Face | Rule |
 |---|---|---|
-| Display + lockups | **Cal Sans** | Lockups always; display headings per product style |
+| Display + lockups | **Cal Sans** | Lockups always; display headings (`h1`–`h3`) family-wide as of July 2026 — self-host the single-weight file declared 100–900 so inline font-weights never synthesise a faux bold |
 | **UI / body — family-wide** | **Nunito Sans** (300–800) | The family UI face (July 2026 decision). It stands in for Avenir, the face in the master artwork |
 | Mono | product's choice (JetBrains Mono, system stack…) | The *rule* is the constant: monospace is semantic — codes, IDs, times, phone numbers, audit trails; anything a human reads aloud. Never decorative |
 
