@@ -14,7 +14,7 @@ Current product specs:
 - Events — `design/scoutos-branding-spec.md` in `stuartridout/eventok`
 
 This document encodes the family decisions agreed in July 2026 (§12 lists the
-migrations they imply, and the one decision still open).
+decisions and the migrations they imply).
 
 ---
 
@@ -249,7 +249,15 @@ the header, semantic colours from §5.3, and the §9 trust footer.
    HikeCheck moves from `#2E7D46`/`#B26A00`/`#BC3C2B` (and tints) to the family
    values; its icon+label discipline is unchanged and now mandatory for its
    surface class (§6.4).
-4. **App icons: OPEN** — see below.
+4. **App icons & favicons: the OS mark.** Every ScoutOS app icon shows the
+   compass + light "S" ("OS") centred on a rounded square. The product name is
+   never baked into the artwork — the platform label beneath the icon (and the
+   page title beside the favicon) carries it. Per-product background/glyph
+   colours are permitted (HikeCheck yellow-on-ink `#F2C41D`/`#1B241E`; Events
+   white-on-navy `#FBF8F0`/`#26336D`). Icon artwork is always **fully
+   outlined** — never live text: font-dependent SVG favicons fail to load
+   their fonts in browser tabs, which is how HikeCheck's favicon degraded to
+   a bare compass.
 5. **Lockups ship as outlined vectors** (§4.2), monochrome by default with the
    two-tone treatment on dark (§4.3). *Migration:* HikeCheck's live-text
    `Logo.tsx` is replaced with an outlined lockup (keeping its two-tone dark
@@ -258,17 +266,11 @@ the header, semantic colours from §5.3, and the §9 trust footer.
    future scoutos.org home. Product specs describe product-level choices and
    defer to this document for constants.
 
-**Open — app icon treatment.** Today the icons don't match: HikeCheck ships the
-yellow compass+"S" on warm ink; Events ships a white compass on navy `#26336D`
-(a colour outside every palette). Candidate rules:
-
-- **A — one identical badge**: every ScoutOS app uses the same icon; apps are
-  distinguished only by their name label.
-- **B — shared template, product colour** *(recommended)*: identical composition
-  (rounded square, centred compass glyph at fixed scale), background/glyph
-  colours set per product (e.g. HikeCheck yellow-on-ink; Events white-on-purple).
-
-Whichever is chosen, the navy Events icon is replaced.
+**Icon composition template** (for new products): 512×512, rounded square
+(rx ≈ 96–114), OS mark centred at ~82% width (~420/512); maskable and
+full-bleed variants keep the mark within the central ~75–80% (~380/512).
+Reference implementations: `public/icon.svg` + `public/icon-maskable.svg` in
+HikeCheck; `app/icon.svg` + the PNG set in EventOK.
 
 ---
 
