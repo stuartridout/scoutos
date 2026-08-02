@@ -68,7 +68,7 @@ export const products: Product[] = [
 ];
 
 // Official Scouts (UK) help — where anything about Scouting itself belongs.
-export const scoutsHelpUrl = 'https://www.scouts.org.uk/get-help/';
+export const scoutsHelpUrl = 'https://www.scouts.org.uk/contact-us/';
 
 // The body that builds and runs ScoutOS.
 export const developer = {
