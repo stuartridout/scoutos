@@ -21,6 +21,9 @@ export type Product = {
   supportUrl: string;
   /** Whether the product is publicly live yet. */
   live: boolean;
+  /** Whether the product has its own help/FAQs pages to link to yet. Flip to
+   *  true (and confirm supportUrl) when the product ships its support pages. */
+  hasOwnSupport: boolean;
 };
 
 export const products: Product[] = [
@@ -34,6 +37,7 @@ export const products: Product[] = [
     url: 'https://events.scoutos.org',
     supportUrl: 'https://events.scoutos.org/support',
     live: true,
+    hasOwnSupport: true,
   },
   {
     key: 'hikecheck',
@@ -45,6 +49,7 @@ export const products: Product[] = [
     url: 'https://hikecheck.scoutos.org',
     supportUrl: 'https://hikecheck.scoutos.org/support',
     live: true,
+    hasOwnSupport: false,
   },
   {
     key: 'waitlist',
@@ -56,6 +61,7 @@ export const products: Product[] = [
     url: 'https://waitlist.scoutos.org',
     supportUrl: 'https://waitlist.scoutos.org/support',
     live: true,
+    hasOwnSupport: false,
   },
 ];
 
