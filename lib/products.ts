@@ -58,8 +58,10 @@ export const products: Product[] = [
     promise: 'A fair place in the queue for every young person.',
     description:
       'Manage waiting lists for oversubscribed sections and events, so families know where they stand and no young person is forgotten.',
-    url: 'https://waitlist.scoutos.org',
-    supportUrl: 'https://waitlist.scoutos.org/support',
+    // Migrating to waitlist.scoutos.org, but the live site is scoutswaitlist.com
+    // for now — keep pointing there until the migration completes.
+    url: 'https://scoutswaitlist.com/',
+    supportUrl: 'https://scoutswaitlist.com/',
     live: true,
     hasOwnSupport: false,
   },

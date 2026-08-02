@@ -91,7 +91,10 @@ export function Wordmark({
           aria-hidden="true"
           style={{
             marginLeft: '0.26em',
-            fontWeight: 700,
+            // 500, not 700: Cal Sans is effectively single-weight, so 700
+            // synthesises a faux bold that reads heavier than the outlined
+            // ScoutOS mark beside it. 500 matches the mark's weight.
+            fontWeight: 500,
             // Sized so the product name's cap height matches the outlined
             // mark's caps (≈0.884em of the mark's box height).
             fontSize: '1.2em',
