@@ -65,7 +65,9 @@ h1,
 h2,
 h3 {
   font-family: var(--font-display);
-  font-weight: 700;
+  /* 500, not 700: Cal Sans is effectively single-weight, so a heavier request
+     synthesises a faux bold that reads too heavy. 500 renders its true weight. */
+  font-weight: 500;
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin: 0;
