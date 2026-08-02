@@ -1,0 +1,153 @@
+/*
+ * ScoutOS parent site — base styles.
+ * Tokens mirror lib/tokens.ts, which encodes the family masterbrand (§5, §7).
+ * Warm paper background, warm near-black ink; ScoutOS yellow is the identity
+ * colour. Calm, trustworthy, confident — no decoration that competes with
+ * information.
+ */
+
+:root {
+  --paper: #f4f1e9;
+  --surface: #ffffff;
+  --surface-2: #efebdd;
+  --ink: #0d0b08;
+  --ink-2: #423d33;
+  --muted: #7d7367;
+  --hairline: #e3ddcf;
+  --hairline-strong: #c8bea9;
+
+  --dark: #14120d;
+  --dark-surface: #1f1c15;
+  --dark-hairline: #322d22;
+
+  --yellow: #f2c41d;
+  --yellow-deep: #d3a70f;
+  --yellow-soft: #fbefc4;
+  --yellow-tint: #fdf8e6;
+
+  --font-display: 'Cal Sans', 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Nunito Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --maxw: 1080px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ink);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+/* Visible focus on every interactive element (accessibility floor §11). */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--yellow-deep);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Primary action: ink on ScoutOS yellow (clears AA; yellow never carries text
+   on its own on a light surface). */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.btn-primary:hover {
+  background: var(--yellow-deep);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--hairline-strong);
+}
+
+.btn-ghost:hover {
+  background: var(--surface-2);
+}
+
+.btn-on-dark {
+  background: var(--yellow);
+  color: var(--ink);
+}
+
+.btn-on-dark:hover {
+  background: var(--yellow-deep);
+}
