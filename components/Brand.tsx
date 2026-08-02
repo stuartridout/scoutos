@@ -58,8 +58,7 @@ export function Wordmark({
     <span
       aria-label={label}
       style={{
-        display: 'inline-flex',
-        alignItems: 'baseline',
+        display: 'inline-block',
         fontFamily: fonts.display,
         fontWeight: 700,
         fontSize: size,
@@ -69,13 +68,24 @@ export function Wordmark({
         ...style,
       }}
     >
-      <span aria-hidden="true" style={{ display: 'inline-flex', alignItems: 'baseline', color: scoutColor }}>
-        <span>Scout</span>
-        <Compass size="0.82em" style={{ alignSelf: 'center', margin: '0 -0.02em', transform: 'translateY(0.02em)' }} />
-        <span style={{ fontFamily: fonts.body, fontWeight: 300 }}>S</span>
+      <span aria-hidden="true" style={{ color: scoutColor }}>
+        Scout
+        {/* The compass is the "O" of "OS": sized to cap height and
+            baseline-aligned (with slight overshoot) so it sits like a capital
+            letter, and negatively kerned so it reads inside the word, not as a
+            separate icon. */}
+        <Compass
+          style={{
+            width: '0.74em',
+            height: '0.74em',
+            verticalAlign: '-0.05em',
+            margin: '0 -0.05em',
+          }}
+        />
+        <span style={{ fontFamily: fonts.body, fontWeight: 300, letterSpacing: 0 }}>S</span>
       </span>
       {product ? (
-        <span aria-hidden="true" style={{ color: productColor, marginLeft: '0.32em' }}>
+        <span aria-hidden="true" style={{ color: productColor, marginLeft: '0.34em' }}>
           {product}
         </span>
       ) : null}
