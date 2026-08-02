@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Nav } from '@/components/Nav';
 import { Footer } from '@/components/Footer';
-import { products, scoutsHelpUrl, developer, contactEmail } from '@/lib/products';
+import { products, scoutsHelpUrl, developer, supportEmail } from '@/lib/products';
 
 export const metadata: Metadata = {
   title: 'Support',
@@ -125,7 +125,7 @@ export default function SupportPage() {
                 alongside everything else Scouting asks of us.
               </p>
               <a
-                href={`mailto:${contactEmail}`}
+                href={`mailto:${supportEmail}`}
                 style={{
                   marginTop: 18,
                   display: 'inline-block',
@@ -138,7 +138,7 @@ export default function SupportPage() {
                   paddingBottom: 2,
                 }}
               >
-                {contactEmail}
+                {supportEmail}
               </a>
             </div>
           </div>

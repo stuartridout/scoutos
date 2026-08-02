@@ -1,40 +1,20 @@
 /** @type {import('next').NextConfig} */
 
-// Security headers are set here (not only in staticwebapp.config.json) because
-// Azure Static Web Apps does not honour staticwebapp.config.json globalHeaders
-// for hybrid Next.js apps — the standalone server must set them itself. This
-// mirrors the eventok / hikecheck house pattern. Google Fonts is allowed for
-// style + font because the ScoutOS lockup and body face (Cal Sans, Nunito
-// Sans) load from Google Fonts; there is no other external origin.
-const securityHeaders = [
-  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
-  { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-  { key: 'X-Content-Type-Options', value: 'nosniff' },
-  { key: 'X-Frame-Options', value: 'DENY' },
-  { key: 'Permissions-Policy', value: 'camera=(), geolocation=(), microphone=()' },
-  {
-    key: 'Content-Security-Policy',
-    value: [
-      "default-src 'self'",
-      "base-uri 'self'",
-      "object-src 'none'",
-      "frame-ancestors 'none'",
-      "form-action 'self'",
-      "script-src 'self' 'unsafe-inline'",
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      "font-src 'self' https://fonts.gstatic.com",
-      "img-src 'self' data:",
-      "connect-src 'self'",
-    ].join('; '),
-  },
-];
-
+// Static export for GitHub Pages. The site has no server APIs, auth or dynamic
+// routes, so `next build` emits a fully static `out/` directory that Pages
+// serves as-is. Served from the custom domain scoutos.org (see public/CNAME),
+// so no basePath/assetPrefix is needed — links stay root-relative.
+//
+// Note: security headers can't be set here under `output: 'export'` (Pages
+// serves static files and honours no server headers). A best-effort CSP is set
+// via a <meta> tag in app/layout.tsx instead; frame protection would need a
+// host that sets X-Frame-Options / frame-ancestors, which Pages does not.
 const nextConfig = {
+  output: 'export',
   reactStrictMode: true,
-  // Self-contained server in .next/standalone that SWA's Next adapter packages.
-  output: 'standalone',
-  async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }];
-  },
+  // Emit `out/<route>/index.html` so Pages serves clean `/support/` URLs.
+  trailingSlash: true,
+  // No server image optimisation under static export.
+  images: { unoptimized: true },
 };
 export default nextConfig;

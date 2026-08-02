@@ -13,8 +13,8 @@ either to the official Scouts UK help or to the right product's own help/FAQs.
 
 - **Next.js 15** (App Router, React 19), TypeScript strict, Node ≥ 22.6 — the
   EventOK/house standard.
-- **Azure Static Web Apps** (`output: 'standalone'`), same as the other ScoutOS
-  products.
+- **Static export** (`output: 'export'`) served from **GitHub Pages** on the
+  custom domain **scoutos.org**. `next build` emits a static `out/` directory.
 - No database, no auth, no server APIs — every route is statically prerendered.
 - Design tokens in `lib/tokens.ts`, brand marks in `components/Brand.tsx`, all
   following the family masterbrand (`brand/scoutos-masterbrand.md`).
@@ -49,19 +49,37 @@ edit `lib/products.ts` — nothing else references those URLs directly.
 npm install
 npm run dev         # local dev
 npm run typecheck   # tsc --noEmit
-npm run build       # next build (the CI gate)
+npm run build       # next build → static export in out/
+npm run preview     # serve the built out/ locally on :3000
 ```
+
+## Deploy (GitHub Pages)
+
+Deployment is automatic via `.github/workflows/deploy-pages.yml` — it builds the
+static export and publishes it on every push to `main` (and on manual dispatch).
+
+First-time setup, once:
+
+1. **Settings → Pages → Source: GitHub Actions.**
+2. **Custom domain:** `public/CNAME` already contains `scoutos.org`. Point DNS
+   at GitHub Pages — apex `A`/`AAAA` records to GitHub's Pages IPs (or an
+   `ALIAS`/`ANAME` to `stuartridout.github.io`), and optionally a `www` CNAME.
+   Then confirm the domain in Settings → Pages and enable "Enforce HTTPS".
+
+Until DNS resolves, the export can be checked locally with `npm run preview`.
+(The default `stuartridout.github.io/scoutos/` project URL would need a
+`basePath` — this build is configured for the apex domain, not that path.)
 
 ## Status
 
-- Built: Aug 2026. Home + `/support` live, typecheck + build green.
-- Product links use `*.scoutos.org` subdomains — wire the DNS, or adjust the
-  URLs in `lib/products.ts`, before launch.
-- `contactEmail` in `lib/products.ts` is a placeholder (`hello@scoutos.org`) —
-  confirm before launch.
+- Built: Aug 2026. Home + `/support` live; typecheck + static export green.
+- Products point at `events.scoutos.org` (live), `hikecheck.scoutos.org` and
+  `waitlist.scoutos.org` — all in `lib/products.ts`.
+- Emails: general `hello@scoutos.org`, support `help@scoutos.org`
+  (`lib/products.ts`).
 
 ## Out of scope
 
-No infra/Bicep, CI workflow, or per-product content is included yet — this is
-the site only. Add `infra/` + `deploy` when standing up the Azure stack, following
-the eventok/guild pattern.
+No per-product content or CMS — this is the parent marketing + signposting site
+only. Security headers (X-Frame-Options / CSP `frame-ancestors`) can't be set on
+Pages; a best-effort CSP `<meta>` is in `app/layout.tsx`.

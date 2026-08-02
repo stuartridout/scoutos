@@ -69,5 +69,7 @@ export const developer = {
 };
 
 // General enquiries about ScoutOS the family (not a specific product).
-// TODO: confirm this address with the owner before launch.
 export const contactEmail = 'hello@scoutos.org';
+
+// Support address, shown on /support for family-level help requests.
+export const supportEmail = 'help@scoutos.org';

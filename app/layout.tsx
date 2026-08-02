@@ -26,6 +26,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-GB">
       <head>
+        {/* Best-effort CSP via <meta> — GitHub Pages serves static files and
+            sets no server headers. Google Fonts is the only external origin.
+            frame-ancestors / X-Frame-Options can't be set from a meta tag or
+            on Pages, so framing protection would need a different host. */}
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'"
+        />
         {/* Fonts per masterbrand §7: Cal Sans (display + lockups) and Nunito
             Sans (UI/body). Loaded from Google Fonts (the only external origin;
             allowed in the CSP). display=swap so warm fallbacks show first. */}

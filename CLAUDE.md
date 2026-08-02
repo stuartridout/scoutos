@@ -6,9 +6,10 @@ and Waitlist. A small static marketing + signposting site (home + `/support`),
 developed by Milton Keynes District Scout Council.
 
 ## Stack
-Next.js 15 App Router, React 19, TypeScript strict, Node ≥ 22.6. Azure Static
-Web Apps (`output: 'standalone'`). No DB, no auth, no APIs — every route is
-statically prerendered. Cal Sans + Nunito Sans from Google Fonts.
+Next.js 15 App Router, React 19, TypeScript strict, Node ≥ 22.6. Static export
+(`output: 'export'`) served from GitHub Pages on the custom domain scoutos.org.
+No DB, no auth, no APIs — every route is statically prerendered. Cal Sans +
+Nunito Sans from Google Fonts.
 
 ## Invariants — do not break
 - **Follow the family masterbrand** (`brand/scoutos-masterbrand.md`) — it is
@@ -20,12 +21,18 @@ statically prerendered. Cal Sans + Nunito Sans from Google Fonts.
 - **Design tokens live in `lib/tokens.ts`** (mirrored in `app/globals.css`).
   ScoutOS yellow is the identity colour; green/red stay reserved for
   safety-critical status per §6 and aren't used decoratively here.
-- Keep the CSP in `next.config.mjs` and `staticwebapp.config.json` in sync;
-  Google Fonts is the only allowed external origin.
+- CSP is best-effort via a `<meta>` tag in `app/layout.tsx` (Pages sets no
+  server headers). `output: 'export'` supports no `headers()` — don't re-add it.
+  Google Fonts is the only allowed external origin; keep the meta CSP in step.
+- `public/CNAME` (scoutos.org) and `public/.nojekyll` must stay — the CNAME
+  binds the custom domain; `.nojekyll` stops Jekyll from dropping `_next/`.
+- No `basePath` — the build targets the apex domain, not the github.io project
+  path. Don't add one without also revisiting CNAME + links.
 
 ## How to deploy
-Not wired yet. When standing up Azure, copy the eventok/guild `infra/` +
-`provision.sh` + `deploy-dev.yml` pattern (SWA Standard, uksouth, no auto-deploy).
+Automatic via `.github/workflows/deploy-pages.yml` on push to `main` (and manual
+dispatch): builds the static export and publishes `out/` to GitHub Pages. One-off
+setup: Settings → Pages → Source = GitHub Actions; point scoutos.org DNS at Pages.
 
 ## Conventions
 - Work on a feature branch; explain git operations in one sentence.
@@ -33,11 +40,12 @@ Not wired yet. When standing up Azure, copy the eventok/guild `infra/` +
 - British English, sentence case, no exclamation marks (masterbrand §9).
 
 ## Status
-- Last session: Aug 2026 — built home + `/support`; typecheck + build green.
+- Last session: Aug 2026 — built home + `/support`; moved hosting to GitHub
+  Pages (static export). Typecheck + export green.
 - Next three actions:
-  1. Confirm the `*.scoutos.org` subdomains and `contactEmail`, wire DNS.
-  2. Add `infra/` + deploy workflow (eventok pattern).
-  3. Fill in real Scouts UK help deep-links / any council contact details.
+  1. Enable Pages (Source = GitHub Actions) and point scoutos.org DNS.
+  2. Fill in real Scouts UK help deep-links if wanted.
+  3. Add OG/social image + sitemap when content settles.
 
 ## Out of scope
 Per-product content, auth, databases, and infra — this repo is the parent
